@@ -1,35 +1,33 @@
-import BlogCard from "@/componsents/BlogCard";
-import Button from "@/componsents/Button";
+import { getPostsData } from "@/api";
 import MainCard from "@/componsents/MainCard";
-import Image from "next/image";
+import Link from "next/link";
+import { notFound } from "next/navigation";
 
-export default function Home() {
+export default async function Home() {
+  const data = await getPostsData();
+  if (!data) notFound();
+
   return (
     <main>
-      <h1>THE BLOG</h1>
-      <section>
-        <h2>Recent blog posts</h2>
-        <MainCard />
-        <ul>
-          <li>Design</li>
-          <li>Research</li>
-          <li>Presentation</li>
-        </ul>
+      {/* {JSON.stringify(data)} */}
+      <h1 className="page-title">THE BLOG</h1>
 
-        <BlogCard />
-        <BlogCard />
-        <MainCard />
+      <section>
+        <h2 className="section-title">Recent blog posts</h2>
+        {data.map((item) => (
+          <MainCard data={item} />
+        ))}
       </section>
 
       <section>
-        <h1>All blog posts</h1>
+        <h2 className="section-title">All blog posts</h2>
         <div>
+          {/* <MainCard />
           <MainCard />
           <MainCard />
           <MainCard />
           <MainCard />
-          <MainCard />
-          <MainCard />
+          <MainCard /> */}
         </div>
       </section>
 
@@ -65,6 +63,9 @@ export default function Home() {
 
           <li>
             <a href="">Add to Feedly</a>
+          </li>
+          <li>
+            <Link href="/about">About</Link>
           </li>
         </ul>
       </footer>
