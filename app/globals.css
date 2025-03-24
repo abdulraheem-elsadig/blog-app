@@ -24,3 +24,18 @@ body {
   color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
 }
+
+button {
+  height: 40px;
+}
+.button-primary {
+  background-color: rebeccapurple;
+  width: 200px;
+  border-radius: 12px;
+}
+.button-secondary {
+  width: 200px;
+  border-radius: 12px;
+
+  border: rebeccapurple solid 2px;
+}
